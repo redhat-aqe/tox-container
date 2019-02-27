@@ -18,5 +18,6 @@ RUN dnf install -y --setopt=tsflags=nodocs \
                 python2-devel \
                 python3-devel \
                 python3-tox \
+                openssl-devel \
                 krb5-devel && \
     dnf clean all
