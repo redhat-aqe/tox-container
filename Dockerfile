@@ -20,6 +20,6 @@ RUN dnf install -y --setopt=tsflags=nodocs \
                 python3-tox \
                 openldap-devel \
                 openssl-devel \
-                krb5-devel && \
+                krb5-devel \
                 graphviz-devel && \
     dnf clean all
