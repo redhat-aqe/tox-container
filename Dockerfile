@@ -21,5 +21,6 @@ RUN dnf install -y --setopt=tsflags=nodocs \
                 openldap-devel \
                 openssl-devel \
                 krb5-devel \
+                popt-devel \
                 graphviz-devel && \
     dnf clean all
