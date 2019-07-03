@@ -11,6 +11,7 @@ RUN chmod -R g=u /etc/passwd
 RUN dnf install -y --setopt=tsflags=nodocs \
                 git \
                 gcc \
+                libxcrypt-compat \
                 python2 \
                 python3 \
                 python2-pip \
