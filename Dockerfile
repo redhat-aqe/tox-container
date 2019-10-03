@@ -23,5 +23,6 @@ RUN dnf install -y --setopt=tsflags=nodocs \
                 openssl-devel \
                 krb5-devel \
                 popt-devel \
+                libpq-devel \
                 graphviz-devel && \
     dnf clean all
