@@ -24,5 +24,6 @@ RUN dnf install -y --setopt=tsflags=nodocs \
                 krb5-devel \
                 popt-devel \
                 libpq-devel \
+                libffi-devel \
                 graphviz-devel && \
     dnf clean all
