@@ -25,5 +25,7 @@ RUN dnf install -y --setopt=tsflags=nodocs \
                 popt-devel \
                 libpq-devel \
                 libffi-devel \
+                pandoc \
+                lua \
                 graphviz-devel && \
     dnf clean all
