@@ -1,0 +1,44 @@
+---
+language: generic
+
+services:
+  - docker
+
+stages:
+  - name: build container
+  - name: sanity check
+  - name: deploy
+    if: branch = master
+
+jobs:
+  include:
+    - stage: build container
+      script:
+        - echo 'Building container...'
+          && export CONTAINER_TAG="${TRAVIS_COMMIT:0:7}"
+          && docker build -t tox:$CONTAINER_TAG --build-arg GIT_COMMIT=$CONTAINER_TAG .
+          && docker images
+          && echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin quay.io
+          && docker tag tox:$CONTAINER_TAG $DOCKER_REMOTE_REPO:$CONTAINER_TAG
+          && docker push $DOCKER_REMOTE_REPO:$CONTAINER_TAG
+          && echo 'Build succeeded!'
+          && echo '______________________________'
+    - stage: sanity check
+      script:
+        - echo 'Sanity check -- running the container we built in Quay'
+          && export CONTAINER_TAG="${TRAVIS_COMMIT:0:7}"
+          && echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin quay.io
+          && docker run --rm -it $DOCKER_REMOTE_REPO:$CONTAINER_TAG tox --help
+          && echo 'Sanity check succeeded!'
+          && echo '______________________________'
+    - stage: deploy
+      if: branch = master
+      script:
+        - echo 'Deploying container...'
+          && export CONTAINER_TAG="${TRAVIS_COMMIT:0:7}"
+          && echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin quay.io
+          && docker pull $DOCKER_REMOTE_REPO:$CONTAINER_TAG
+          && docker tag $DOCKER_REMOTE_REPO:$CONTAINER_TAG $DOCKER_REMOTE_REPO:latest
+          && docker push $DOCKER_REMOTE_REPO:latest
+          && echo 'Deployment succeeded!'
+          && echo '______________________________'
