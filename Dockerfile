@@ -29,4 +29,6 @@ RUN dnf install -y --setopt=tsflags=nodocs \
                 libpq-devel \
                 libffi-devel \
                 graphviz-devel \
+                hunspell \
+                hunspell-en-US \
     && dnf clean all
