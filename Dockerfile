@@ -31,4 +31,5 @@ RUN dnf install -y --setopt=tsflags=nodocs \
                 graphviz-devel \
                 hunspell \
                 hunspell-en-US \
+		enchant \
     && dnf clean all
