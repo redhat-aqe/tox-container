@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM registry.fedoraproject.org/fedora:latest
 
 LABEL maintainer="PnT DevOps Automation - Red Hat, Inc." \
       vendor="PnT DevOps Automation - Red Hat, Inc." \
