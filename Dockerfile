@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM registry.fedoraproject.org/fedora:latest
 
 LABEL maintainer="PnT DevOps Automation - Red Hat, Inc." \
       vendor="PnT DevOps Automation - Red Hat, Inc." \
@@ -15,21 +15,23 @@ LABEL git_commit=$GIT_COMMIT
 RUN chmod -R g=u /etc/passwd
 
 RUN dnf install -y --setopt=tsflags=nodocs \
-                git \
-                gcc \
-                libxcrypt-compat \
-                python3 \
-                python3-pip \
-                python3-devel \
-                python3-tox \
-                openldap-devel \
-                openssl-devel \
-                krb5-devel \
-                popt-devel \
-                libpq-devel \
-                libffi-devel \
-                graphviz-devel \
-                hunspell \
-                hunspell-en-US \
-		enchant \
-    && dnf clean all
+      git \
+      gcc \
+      libxcrypt-compat \
+      python3 \
+      python3-pip \
+      python3-devel \
+      python3-tox \
+      openldap-devel \
+      openssl-devel \
+      krb5-devel \
+      popt-devel \
+      libpq-devel \
+      libffi-devel \
+      graphviz-devel \
+      hunspell \
+      hunspell-en-US \
+      enchant \
+      && dnf clean all
+
+RUN pip3 install awxkit
