@@ -35,3 +35,10 @@ RUN dnf install -y --setopt=tsflags=nodocs \
       && dnf clean all
 
 RUN pip3 install awxkit
+
+# Trust this certificate used for internal Red Hat services.
+COPY RH-IT-Root-CA.crt /etc/pki/ca-trust/source/anchors/RH-IT-Root-CA.crt
+RUN update-ca-trust
+
+# Respect system bundle even if requests is installed by pip.
+ENV REQUESTS_CA_BUNDLE /etc/pki/tls/certs/ca-bundle.crt
