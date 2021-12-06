@@ -11,9 +11,6 @@ LABEL maintainer="PnT DevOps Automation - Red Hat, Inc." \
 ARG GIT_COMMIT=unspecified
 LABEL git_commit=$GIT_COMMIT
 
-# Rrovide way to add user in entrypoint for openshift runs
-RUN chmod -R g=u /etc/passwd
-
 RUN dnf install -y --setopt=tsflags=nodocs \
       git \
       gcc \
