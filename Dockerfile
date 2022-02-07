@@ -26,6 +26,8 @@ RUN dnf install -y --setopt=tsflags=nodocs \
       libpq-devel \
       libffi-devel \
       graphviz-devel \
+      libxml2-devel \
+      libxslt-devel \
       hunspell \
       hunspell-en-US \
       enchant \
