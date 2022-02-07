@@ -11,7 +11,7 @@ LABEL maintainer="PnT DevOps Automation - Red Hat, Inc." \
 ARG GIT_COMMIT=unspecified
 LABEL git_commit=$GIT_COMMIT
 
-RUN dnf install -y --setopt=tsflags=nodocs \
+RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       git \
       gcc \
       libxcrypt-compat \
