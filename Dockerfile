@@ -14,7 +14,6 @@ LABEL git_commit=$GIT_COMMIT
 RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       git \
       gcc \
-      gcc-c++ \
       libxcrypt-compat \
       python3 \
       python3-pip \
