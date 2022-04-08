@@ -11,6 +11,9 @@ LABEL maintainer="PnT DevOps Automation - Red Hat, Inc." \
 ARG GIT_COMMIT=unspecified
 LABEL git_commit=$GIT_COMMIT
 
+COPY certs/ /etc/pki/ca-trust/source/anchors/
+RUN /usr/bin/update-ca-trust
+
 RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       git \
       gcc \
