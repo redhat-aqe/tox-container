@@ -37,4 +37,4 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       libarchive-devel \
       && dnf clean all
 
-RUN pip3 install awxkit pdm tox-pdm
+RUN pip3 install awxkit
