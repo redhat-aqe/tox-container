@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:latest
+FROM registry.fedoraproject.org/fedora:38
 
 LABEL maintainer="PnT DevOps Automation - Red Hat, Inc." \
       vendor="PnT DevOps Automation - Red Hat, Inc." \
@@ -14,14 +14,12 @@ LABEL git_commit=$GIT_COMMIT
 COPY certs/ /etc/pki/ca-trust/source/anchors/
 RUN /usr/bin/update-ca-trust
 
-RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
+RUN dnf update -y
+RUN dnf install -y --setopt=tsflags=nodocs \
       git \
       gcc \
       libxcrypt-compat \
-      python3 \
-      python3-pip \
       python3-devel \
-      python3-tox \
       openldap-devel \
       openssl-devel \
       krb5-devel \
@@ -36,6 +34,21 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       enchant \
       libarchive-devel \
       libacl-devel \
+      patch \
+      zlib-devel \
+      bzip2 \
+      bzip2-devel \
+      readline-devel \
+      sqlite \
+      sqlite-devel \
+      xz \
+      xz-devel \
       && dnf clean all
 
-RUN pip3 install awxkit
+# switch to python3.6
+RUN git clone https://github.com/pyenv/pyenv.git /pyenv
+ENV PYENV_ROOT /pyenv
+RUN /pyenv/bin/pyenv install 3.6.15
+RUN echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+RUN echo 'eval "$(/pyenv/bin/pyenv init -)"' >> ~/.bashrc && /pyenv/bin/pyenv global 3.6.15
+RUN /pyenv/versions/3.6.15/bin/pip install awxkit tox
