@@ -32,6 +32,8 @@ RUN dnf install -y --setopt=tsflags=nodocs \
       hunspell \
       hunspell-en-US \
       enchant \
+      ShellCheck \
+      hadolint \
       && dnf clean all
 
 RUN pip3 install awxkit
