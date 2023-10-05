@@ -35,6 +35,8 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       hunspell-en-US \
       enchant \
       libarchive-devel \
+      ShellCheck \
+      hadolint \
       && dnf clean all
 
 RUN pip3 install awxkit
