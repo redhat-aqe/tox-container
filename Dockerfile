@@ -18,10 +18,7 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       git \
       gcc \
       libxcrypt-compat \
-      python3 \
-      python3-pip \
       python3-devel \
-      python3-tox \
       openldap-devel \
       openssl-devel \
       krb5-devel \
@@ -35,6 +32,16 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       hunspell-en-US \
       enchant \
       libarchive-devel \
+      libacl-devel \
+      patch \
+      zlib-devel \
+      bzip2 \
+      bzip2-devel \
+      readline-devel \
+      sqlite \
+      sqlite-devel \
+      xz \
+      xz-devel \
       ShellCheck \
       hadolint \
       && dnf clean all
