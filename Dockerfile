@@ -36,6 +36,8 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       enchant \
       libarchive-devel \
       libacl-devel \
+      ShellCheck \
+      hadolint \
       && dnf clean all
 
 RUN pip3 install awxkit
