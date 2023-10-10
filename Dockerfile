@@ -53,3 +53,5 @@ RUN /pyenv/bin/pyenv install 3.10.11
 RUN echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(/pyenv/bin/pyenv init -)"' >> ~/.bashrc && /pyenv/bin/pyenv global 3.10.11
 RUN /pyenv/versions/3.10.11/bin/pip install awxkit tox
+
+ENTRYPOINT ["/bin/bash", "-l" ,"-c"]
