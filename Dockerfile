@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:36
+FROM registry.fedoraproject.org/fedora:38
 
 LABEL maintainer="PnT DevOps Automation - Red Hat, Inc." \
       vendor="PnT DevOps Automation - Red Hat, Inc." \
@@ -18,10 +18,7 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       git \
       gcc \
       libxcrypt-compat \
-      python3 \
-      python3-pip \
       python3-devel \
-      python3-tox \
       openldap-devel \
       openssl-devel \
       krb5-devel \
@@ -36,8 +33,23 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       enchant \
       libarchive-devel \
       libacl-devel \
+      patch \
+      zlib-devel \
+      bzip2 \
+      bzip2-devel \
+      readline-devel \
+      sqlite \
+      sqlite-devel \
+      xz \
+      xz-devel \
       ShellCheck \
       hadolint \
       && dnf clean all
 
-RUN pip3 install awxkit
+# switch to Python 3.10
+RUN git clone https://github.com/pyenv/pyenv.git /pyenv
+ENV PYENV_ROOT /pyenv
+RUN /pyenv/bin/pyenv install 3.10.11
+RUN echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+RUN echo 'eval "$(/pyenv/bin/pyenv init -)"' >> ~/.bashrc && /pyenv/bin/pyenv global 3.10.11
+RUN /pyenv/versions/3.10.11/bin/pip install awxkit tox
