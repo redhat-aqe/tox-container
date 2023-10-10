@@ -37,6 +37,7 @@ RUN dnf install -y --setopt=tsflags=nodocs \
       hunspell-en-US \
       enchant \
       python2-rpm \
+      ShellCheck \
       && dnf clean all
 
 RUN pip3 install awxkit
