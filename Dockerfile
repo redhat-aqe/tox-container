@@ -21,6 +21,7 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       python3-devel \
       openldap-devel \
       openssl-devel \
+      openssl \
       krb5-devel \
       popt-devel \
       libpq-devel \
