@@ -54,4 +54,5 @@ RUN echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >>
 RUN echo 'eval "$(/pyenv/bin/pyenv init -)"' >> ~/.bashrc && /pyenv/bin/pyenv global 3.10.11
 RUN /pyenv/versions/3.10.11/bin/pip install awxkit tox
 
-ENTRYPOINT ["/bin/bash", "-l" ,"-c"]
+# symlink all the python binaries to /usr/local/bin to make them appear first
+RUN ln -s /pyenv/versions/3.10.11/bin/* /usr/local/bin/
