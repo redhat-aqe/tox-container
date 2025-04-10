@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:31
+FROM registry.fedoraproject.org/fedora:latest
 
 LABEL maintainer="PnT DevOps Automation - Red Hat, Inc." \
       vendor="PnT DevOps Automation - Red Hat, Inc." \
@@ -18,12 +18,11 @@ RUN dnf update -y && dnf install -y --setopt=tsflags=nodocs \
       git \
       gcc \
       libxcrypt-compat \
-      python2 \
       python3 \
-      python2-pip \
       python3-pip \
-      python2-devel \
       python3-devel \
+      python3-devel \
+      python3-rpm \
       python3-tox \
       openldap-devel \
       openssl-devel \
