@@ -60,6 +60,8 @@ ENV PYENV_ROOT=/pyenv
 RUN /pyenv/bin/pyenv install 3.14.5
 RUN echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(/pyenv/bin/pyenv init -)"' >> ~/.bashrc && /pyenv/bin/pyenv global 3.14.5
-RUN /pyenv/versions/3.14.5/bin/pip install awxkit tox
+RUN /pyenv/versions/3.14.5/bin/pip install awxkit tox && \
+    /pyenv/bin/pyenv rehash
+ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
 
 ENTRYPOINT ["/bin/bash", "-l" ,"-c"]
